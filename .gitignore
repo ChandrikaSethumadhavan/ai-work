@@ -1,3 +1,16 @@
 venv/
 .venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.next/
+.env
+.env.*
+*.pem
+*:Zone.Identifier
 
+# Genesis: generated or local-only (raw traces, code index, dashboard snapshot)
+.genesis/local/
+.genesis/index/
+.genesis/dashboard.html

@@ -1,0 +1,30 @@
+{
+  "task": "T-07",
+  "gate": "tests",
+  "kind": "command",
+  "attempt": "7db0f9bb-5153-40e1-9b01-2a1f1b5cae64",
+  "command": "python -m pytest tests/test_reliability.py -q",
+  "started_at": "2026-10-26T10:09:40.465Z",
+  "observed_at": "2026-10-26T10:09:51.210Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": ".............                                                            [100%]\n13 passed in 7.75s\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "9e4f759502d123c651d678d5e0bbf1b7eec7ddf1020c34819e1be78a8223b909",
+  "before_hash": "9e4f759502d123c651d678d5e0bbf1b7eec7ddf1020c34819e1be78a8223b909",
+  "config_hash": "3e0ae35c03c2a50be75d9ce62141c32f59465be40cbd7c95876b6280178f4ee0",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "3231d277c4deb6bed4c79cfc50e95ffa2a2f7b05189a8324f42676727beb3912"
+}

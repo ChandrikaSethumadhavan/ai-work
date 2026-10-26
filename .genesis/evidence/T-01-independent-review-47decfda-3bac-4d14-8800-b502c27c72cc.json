@@ -1,0 +1,13 @@
+{
+  "task": "T-01",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "47decfda-3bac-4d14-8800-b502c27c72cc",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Re-reviewed ingress after scope widening; code unchanged",
+  "observed_at": "2026-10-25T13:45:33.375Z",
+  "source_hash": "0d301e4295ae08cdd06f1d39c6672a22e44c944ce75ea4f98a08c2fb12ba79bc",
+  "config_hash": "d703109bc6c01b52a687f5b869f7f881b29d0e0b4f153aeba8e782d6eb98866a",
+  "reviewed_proofs": "c09981557ebab075e591bee894c83c8fdf94c51e1d183c7ca6388686a24a14a0",
+  "hash": "aacd8456000b699f113c0c6ae8149896cfc17533f4e1dbb759a9da44bcafe7b6"
+}

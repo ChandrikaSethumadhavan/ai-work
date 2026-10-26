@@ -1,0 +1,13 @@
+{
+  "task": "T-07",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "c0c62b5a-1905-4238-a7b1-c4b0787024f9",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed retries, breaker, DLQ, OTel,\n  audit trail; 51 tests pass incl. live",
+  "observed_at": "2026-10-26T10:10:13.334Z",
+  "source_hash": "9e4f759502d123c651d678d5e0bbf1b7eec7ddf1020c34819e1be78a8223b909",
+  "config_hash": "3e0ae35c03c2a50be75d9ce62141c32f59465be40cbd7c95876b6280178f4ee0",
+  "reviewed_proofs": "54e882493b461d99652fc8cef2ff33260e280cc51b75197a53b93bae5e8c4954",
+  "hash": "27f98edf5c113b39606ef299f62937f76becc10bbc8fcca43c806cc994972c51"
+}

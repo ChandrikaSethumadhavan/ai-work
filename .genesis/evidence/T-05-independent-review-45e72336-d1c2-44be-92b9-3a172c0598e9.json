@@ -1,0 +1,13 @@
+{
+  "task": "T-05",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "45e72336-d1c2-44be-92b9-3a172c0598e9",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed gate, dedupe, dispute threshold; 32 tests pass incl. live",
+  "observed_at": "2026-10-26T09:36:49.065Z",
+  "source_hash": "3bd2ad1aac449804b0f83a68aa2c57b490743aefe8b5f95434854efb51511701",
+  "config_hash": "71b1f222dbc7896d373295d11d4fd81520282618d3cf744fb21ce234df31b386",
+  "reviewed_proofs": "8b6ad81637b00f558686c0dbafab543d2069257fbc41bc6ca542945eeb925576",
+  "hash": "86a57f1fcfc830341250525ba8b19e42cf02a08fae337406d13968b93a87c4fb"
+}

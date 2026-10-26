@@ -1,0 +1,13 @@
+{
+  "task": "T-06",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "afaba699-a193-4d67-b759-964975648f17",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed posting, idempotency, approval\n  gate; 38 tests pass incl. live concurrency",
+  "observed_at": "2026-10-26T09:52:13.809Z",
+  "source_hash": "445514de48f7b16f690e826eb5b619e3bc1a8fb5abccf6e440167b077f58306a",
+  "config_hash": "aba6749a9b2669a2ae3ba2b876fc3a07e7b4f9e570bb92647f39b50541010233",
+  "reviewed_proofs": "afdb0602824a2d5b51ed42856d782fdcbd4591c27d22f04f6fb6b1781101aaef",
+  "hash": "74b6cbaa671c5fda843fb0759ae10433afd5dbff2117baa31df8ab24b58e56ef"
+}

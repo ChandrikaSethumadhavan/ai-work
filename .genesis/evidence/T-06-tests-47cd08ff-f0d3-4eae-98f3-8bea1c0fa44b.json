@@ -1,0 +1,30 @@
+{
+  "task": "T-06",
+  "gate": "tests",
+  "kind": "command",
+  "attempt": "47cd08ff-f0d3-4eae-98f3-8bea1c0fa44b",
+  "command": "python -m pytest tests/test_posting.py -q",
+  "started_at": "2026-10-26T09:43:36.309Z",
+  "observed_at": "2026-10-26T09:43:48.095Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "......                                                                   [100%]\n6 passed in 9.06s\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "445514de48f7b16f690e826eb5b619e3bc1a8fb5abccf6e440167b077f58306a",
+  "before_hash": "445514de48f7b16f690e826eb5b619e3bc1a8fb5abccf6e440167b077f58306a",
+  "config_hash": "aba6749a9b2669a2ae3ba2b876fc3a07e7b4f9e570bb92647f39b50541010233",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "4f205627e75c7bccef0396e6c2a5af8689df1b02f9f819c1580a28d0810fc507"
+}

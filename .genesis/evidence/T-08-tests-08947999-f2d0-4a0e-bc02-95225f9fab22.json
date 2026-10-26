@@ -1,0 +1,30 @@
+{
+  "task": "T-08",
+  "gate": "tests",
+  "kind": "command",
+  "attempt": "08947999-f2d0-4a0e-bc02-95225f9fab22",
+  "command": "node --test dashboard/tests",
+  "started_at": "2026-10-26T10:16:30.357Z",
+  "observed_at": "2026-10-26T10:16:34.353Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "✔ escalation rate is the share of reviews that went to a human (3.83391ms)\n✔ queries are read-only SELECTs over rollups and review tables only (1.790393ms)\n✔ dashboard totals cost and carries the queue through (1.134634ms)\n✔ local use without a password is allowed (0.820831ms)\n✔ production without a password is refused, never open by accident (0.712652ms)\n✔ with a password: [REDACTED] or missing credentials get 401, right one passes (1.071308ms)\n✔ production never falls back to the admin database URL (2.181945ms)\n✔ database client config: encrypted by default, verified when a CA file is given (1.000665ms)\n(node:39206) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n✔ live: seeded review shows up in cost, health, escalation and the queue (2997.102984ms)\n﹣ live: the read-only role cannot read raw events or write (2.252651ms) # set DASHBOARD_DATABASE_URL after creating the role\nℹ tests 10\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 1\nℹ todo 0\nℹ duration_ms 3281.420679\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "5b2a341acd8ec692646b75cd564d59a21482171b3139796c77dc8459f2e6a3e0",
+  "before_hash": "5b2a341acd8ec692646b75cd564d59a21482171b3139796c77dc8459f2e6a3e0",
+  "config_hash": "1b406805f873b62c0e447d860ba97d3492180b4a0d95431900149940f0e48bcf",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "2fc54a1131d21fa38ccba1c44efbc4745893e1eeee47d8bbfab5cee983334586"
+}

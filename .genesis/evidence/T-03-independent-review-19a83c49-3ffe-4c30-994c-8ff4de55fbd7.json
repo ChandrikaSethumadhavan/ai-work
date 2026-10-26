@@ -1,0 +1,13 @@
+{
+  "task": "T-03",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "19a83c49-3ffe-4c30-994c-8ff4de55fbd7",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed hybrid retrieval, demo ok",
+  "observed_at": "2026-10-26T09:01:17.138Z",
+  "source_hash": "e609ede40c4d769ec7abccb4a94dc1602cb0f28c207f2300996b17ceeaf1bdc8",
+  "config_hash": "c80fa08a5ec8806962bdd373d7ab900c2f09a9ea80ace8c7b967ad74351af495",
+  "reviewed_proofs": "b42b26dddf68b68026d273abb6b4bea0b3d9bf579d18013399cb57fac7790e26",
+  "hash": "95d022d94f76459f76d7ad48f233da91790116f5c5b7dc3d6a225146f73fae7e"
+}

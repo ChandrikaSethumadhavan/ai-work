@@ -1,0 +1,30 @@
+{
+  "task": "T-05",
+  "gate": "tests",
+  "kind": "command",
+  "attempt": "e0fe7fba-fe30-4f00-b4dc-574b39e78ebc",
+  "command": "python -m pytest tests/test_gate.py -q",
+  "started_at": "2026-10-26T09:34:37.633Z",
+  "observed_at": "2026-10-26T09:34:52.875Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": ".........                                                                [100%]\n9 passed in 9.39s\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "3bd2ad1aac449804b0f83a68aa2c57b490743aefe8b5f95434854efb51511701",
+  "before_hash": "3bd2ad1aac449804b0f83a68aa2c57b490743aefe8b5f95434854efb51511701",
+  "config_hash": "71b1f222dbc7896d373295d11d4fd81520282618d3cf744fb21ce234df31b386",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "7d7a8813db0b9b64c60d758ba3ede461412b3bcfc071ebbc36dc6d66947ba2e3"
+}

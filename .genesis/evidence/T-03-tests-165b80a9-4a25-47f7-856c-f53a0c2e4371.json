@@ -1,0 +1,30 @@
+{
+  "task": "T-03",
+  "gate": "tests",
+  "kind": "command",
+  "attempt": "165b80a9-4a25-47f7-856c-f53a0c2e4371",
+  "command": "python -m pytest tests/test_retrieval.py -q",
+  "started_at": "2026-10-26T09:00:56.565Z",
+  "observed_at": "2026-10-26T09:01:00.406Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "...                                                                      [100%]\n3 passed in 2.81s\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "e609ede40c4d769ec7abccb4a94dc1602cb0f28c207f2300996b17ceeaf1bdc8",
+  "before_hash": "e609ede40c4d769ec7abccb4a94dc1602cb0f28c207f2300996b17ceeaf1bdc8",
+  "config_hash": "c80fa08a5ec8806962bdd373d7ab900c2f09a9ea80ace8c7b967ad74351af495",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "794b073303577ab6169669e4ef82e32d55b6271f6f703bd6d1a03eeef869f011"
+}

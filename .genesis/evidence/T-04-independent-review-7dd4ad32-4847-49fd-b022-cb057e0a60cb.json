@@ -1,0 +1,13 @@
+{
+  "task": "T-04",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "7dd4ad32-4847-49fd-b022-cb057e0a60cb",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed orchestrator incl.budget-resume fix; 9 tests pass. Real Claude/Redis untested; retry deferred to T-07",
+  "observed_at": "2026-10-26T09:30:13.207Z",
+  "source_hash": "b85a72eb5668e7a96782d2dfc38ad7c54225516f6630d5ba285d0462d9b830c6",
+  "config_hash": "8969b682f64bdb6823291b1df09e8a4a22dc6467488135a50884721c12a7bf65",
+  "reviewed_proofs": "84a6ce25ef40e257802ca9fad2e0625b04a4959230d0191c0ef133857031f773",
+  "hash": "36455c19653a37c77c616e3dd9f2b0d963c7af4bb57009ad8328368be84054eb"
+}

@@ -1,0 +1,30 @@
+{
+  "task": "T-02",
+  "gate": "tests",
+  "kind": "command",
+  "attempt": "93cfdcbc-e2d7-4f09-8cf1-21e04330fd99",
+  "command": "python -m pytest tests/test_db.py -q",
+  "started_at": "2026-10-25T13:48:51.339Z",
+  "observed_at": "2026-10-25T13:48:52.437Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": ".....s                                                                   [100%]\n5 passed, 1 skipped in 0.18s\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "e696ff525ab84b8d9b527da329435640b7093070cef904641d1bcb62856429c7",
+  "before_hash": "e696ff525ab84b8d9b527da329435640b7093070cef904641d1bcb62856429c7",
+  "config_hash": "abd3d2e82fc79feb0ee2b316d54fcc0e1d3507728ea82fc72d68482aed9e4fc4",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "4267bcfde6925def2f5ba552dba05f247d6f44db298d788e21aa8236209ec870"
+}

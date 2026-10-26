@@ -1,0 +1,13 @@
+{
+  "task": "T-02",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "c49dc396-4fe7-4153-b155-4856dd9ff173",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed schema, db helpers and live test against Tiger Cloud",
+  "observed_at": "2026-10-25T14:13:11.433Z",
+  "source_hash": "e696ff525ab84b8d9b527da329435640b7093070cef904641d1bcb62856429c7",
+  "config_hash": "abd3d2e82fc79feb0ee2b316d54fcc0e1d3507728ea82fc72d68482aed9e4fc4",
+  "reviewed_proofs": "8881979a0dfed56ccbda1e5735cb26f0e3e0621080b08381b216be219a5597e2",
+  "hash": "287712b297382a0c9e99806836a78da760faff0f8557e350e946ddfcad107199"
+}

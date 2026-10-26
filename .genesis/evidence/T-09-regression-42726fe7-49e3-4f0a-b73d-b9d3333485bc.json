@@ -1,0 +1,30 @@
+{
+  "task": "T-09",
+  "gate": "regression",
+  "kind": "command",
+  "attempt": "42726fe7-49e3-4f0a-b73d-b9d3333485bc",
+  "command": "python -m pytest -q tests",
+  "started_at": "2026-10-26T10:46:34.339Z",
+  "observed_at": "2026-10-26T10:47:08.857Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "............................................................             [100%]\n60 passed in 28.18s\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+    "dirty": true
+  },
+  "source_hash": "9697b291e1a604f8dd670b96ad7e36320d020121412952e0a0c32ac464213880",
+  "before_hash": "9697b291e1a604f8dd670b96ad7e36320d020121412952e0a0c32ac464213880",
+  "config_hash": "95762eeb95b2595b19e57e41ab4f6b3943c43d5666c22a67108fe2f474f293a3",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "fc299c6d98bc6a4152dc23411b2af2f2efc47a7596206b4f8eee4973266cd6c4"
+}

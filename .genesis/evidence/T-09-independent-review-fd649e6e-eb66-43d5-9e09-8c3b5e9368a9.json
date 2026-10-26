@@ -1,0 +1,13 @@
+{
+  "task": "T-09",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "fd649e6e-eb66-43d5-9e09-8c3b5e9368a9",
+  "human": "ChandrikaSethumadhavan",
+  "reason": "Reviewed provider switch; 60 tests pass;live chat and embeddings verified",
+  "observed_at": "2026-10-26T10:49:15.732Z",
+  "source_hash": "9697b291e1a604f8dd670b96ad7e36320d020121412952e0a0c32ac464213880",
+  "config_hash": "95762eeb95b2595b19e57e41ab4f6b3943c43d5666c22a67108fe2f474f293a3",
+  "reviewed_proofs": "9ab2b09651864f8b2ab2d4a3ec68b4def67ad10fcb7c91e58d69ffe0cd4261ce",
+  "hash": "75a6d972c81fd7bd82d0d0dfae1946fea6c97390b9b0c2764a399dd4ea9a5742"
+}
