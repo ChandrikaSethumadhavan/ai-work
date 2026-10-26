@@ -23,6 +23,8 @@ class FakeLLM:
     async def __call__(self, model, system, user, effort):
         agent = system.split("the ")[1].split(" specialist")[0]
         self.calls.append((agent, model, user))
+        if agent in self.crash:
+            await asyncio.sleep(0.3)  # die only after the other agents have finished and saved their work
         self.active += 1
         self.peak = max(self.peak, self.active)
         await asyncio.sleep(0.05)  # lets parallel agents overlap

@@ -140,15 +140,21 @@ class FakeRedis:
 
 
 @pytest.mark.asyncio
-async def test_dead_letter_only_after_the_final_try():  # NFR-6
+async def test_failed_job_is_retried_with_backoff_then_dead_lettered_on_the_last_try():  # NFR-6
+    from arq import Retry
+
     async def job(ctx, repo, pr):
         raise RuntimeError("always")
-    wrapped = with_dead_letter(job, max_tries=3)
+    wrapped = with_dead_letter(job, max_tries=3, base=5)
     redis = FakeRedis()
-    for attempt in (1, 2, 3):
-        with pytest.raises(RuntimeError):
+    for attempt, wait in ((1, 5), (2, 10)):  # ARQ only retries a job that raises Retry
+        with pytest.raises(Retry) as r:
             await wrapped({"redis": redis, "job_try": attempt, "job_id": "d1"}, "o/r", 5)
-    assert len(redis.items) == 1  # only try 3
+        assert r.value.defer_score == wait * 1000
+    assert redis.items == []  # not parked yet
+    with pytest.raises(RuntimeError):
+        await wrapped({"redis": redis, "job_try": 3, "job_id": "d1"}, "o/r", 5)
+    assert len(redis.items) == 1
     key, item = redis.items[0]
     assert key == DEAD_KEY and item["args"] == ["o/r", 5] and item["job_id"] == "d1" and "always" in item["error"]
 

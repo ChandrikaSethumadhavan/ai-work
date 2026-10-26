@@ -2,7 +2,10 @@ import hashlib
 import re
 from pathlib import Path
 
+from app.retrieval.chunk import chunk_file
+
 POOL = 20  # candidates per retriever before RRF
+MAX_CHUNKS = 300  # per PR: bounds embedding calls on a huge change
 
 
 def vec(v: list[float]) -> str:
@@ -71,3 +74,17 @@ def procedural(path: str = "CONVENTIONS.md") -> str:
     """Team conventions / severity policy: small, always loaded."""
     p = Path(path)
     return p.read_text() if p.exists() else ""
+
+
+def index_files(conn, repo: str, files: dict[str, str], embed, removed=()) -> int:
+    """Index the files a PR touched (decision 1.A). Unchanged chunks are not re-embedded; chunks that no longer
+    exist in a file, and files the PR deleted, are dropped so retrieval never returns stale code."""
+    chunks = [(p, c) for p, t in files.items() for c in chunk_file(t)][:MAX_CHUNKS]
+    embedded = upsert_chunks(conn, repo, chunks, embed)
+    for path in files:
+        keep = [content_hash(c) for p, c in chunks if p == path]
+        conn.execute("DELETE FROM code_chunks WHERE repo=%s AND path=%s AND NOT (content_hash = ANY(%s))",
+                     (repo, path, keep))
+    for path in removed:
+        conn.execute("DELETE FROM code_chunks WHERE repo=%s AND path=%s", (repo, path))
+    return embedded

@@ -1,5 +1,8 @@
+import os
 import re
 import time
+from pathlib import Path
+from urllib.parse import quote
 
 import httpx
 import jwt
@@ -63,23 +66,67 @@ def format_review(review: dict, diff: str) -> tuple[str, list[dict]]:
 
 
 class GitHubClient:
-    """Posts as a GitHub App installation. Untested against real GitHub until App credentials exist."""
+    """Acts as a GitHub App installation. Tokens are cached until shortly before they expire."""
 
-    def __init__(self, app_id: str, private_key: str, installation_id: str):
-        self.app_id, self.key, self.installation_id = app_id, private_key, installation_id
+    def __init__(self, app_id: str, private_key: str, installation_id: str, transport=None):
+        self.app_id, self.key, self.installation_id, self.transport = app_id, private_key, installation_id, transport
+        self._tok, self._exp = None, 0.0
+
+    @classmethod
+    def from_env(cls, env=os.environ):
+        return cls(env["GITHUB_APP_ID"], Path(env["GITHUB_APP_PRIVATE_KEY_PATH"]).read_text(), env["GITHUB_INSTALLATION_ID"])
+
+    def _http(self) -> httpx.Client:
+        return httpx.Client(transport=self.transport, base_url=API, timeout=30)
 
     def _token(self) -> str:
+        if self._tok and time.time() < self._exp:
+            return self._tok
         now = int(time.time())
         app_jwt = jwt.encode({"iat": now - 60, "exp": now + 540, "iss": self.app_id}, self.key, algorithm="RS256")
-        r = httpx.post(f"{API}/app/installations/{self.installation_id}/access_tokens",
-                       headers={**HEADERS, "Authorization": f"Bearer {app_jwt}"}, timeout=30)
+        with self._http() as http:
+            r = http.post(f"/app/installations/{self.installation_id}/access_tokens",
+                          headers={**HEADERS, "Authorization": f"Bearer {app_jwt}"})
         r.raise_for_status()
-        return r.json()["token"]
+        self._tok, self._exp = r.json()["token"], time.time() + 50 * 60  # GitHub tokens last 60 minutes
+        return self._tok
+
+    def _get(self, path: str, accept: str | None = None, **params) -> httpx.Response:
+        headers = {**HEADERS, "Authorization": f"Bearer {self._token()}", **({"Accept": accept} if accept else {})}
+        with self._http() as http:
+            return http.get(path, headers=headers, params=params)
+
+    def get_pr_diff(self, repo: str, number: int) -> str:
+        r = self._get(f"/repos/{repo}/pulls/{number}", accept="application/vnd.github.diff")
+        r.raise_for_status()
+        return r.text
+
+    def get_changed_files(self, repo: str, number: int) -> list[dict]:
+        """[{filename, status}] for the PR (status: added, modified, removed, renamed, ...)."""
+        files, page = [], 1
+        while page <= 30:  # GitHub caps a PR listing at 3000 files
+            r = self._get(f"/repos/{repo}/pulls/{number}/files", per_page=100, page=page)
+            r.raise_for_status()
+            batch = r.json()
+            files += [{"filename": f["filename"], "status": f["status"]} for f in batch]
+            if len(batch) < 100:
+                break
+            page += 1
+        return files
+
+    def get_file(self, repo: str, path: str, ref: str) -> str | None:
+        """File text at a commit, or None when it does not exist."""
+        r = self._get(f"/repos/{repo}/contents/{quote(path)}", accept="application/vnd.github.raw", ref=ref)
+        if r.status_code == 404:
+            return None
+        r.raise_for_status()
+        return r.text
 
     def create_review(self, repo: str, number: int, commit_id: str, body: str, comments: list[dict]) -> int:
-        r = httpx.post(f"{API}/repos/{repo}/pulls/{number}/reviews",
-                       headers={**HEADERS, "Authorization": f"Bearer {self._token()}"}, timeout=30,
-                       json={"commit_id": commit_id, "body": body, "event": "COMMENT", "comments": comments})
+        with self._http() as http:
+            r = http.post(f"/repos/{repo}/pulls/{number}/reviews",
+                          headers={**HEADERS, "Authorization": f"Bearer {self._token()}"},
+                          json={"commit_id": commit_id, "body": body, "event": "COMMENT", "comments": comments})
         r.raise_for_status()
         return r.json()["id"]
 

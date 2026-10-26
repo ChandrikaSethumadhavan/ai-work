@@ -9,3 +9,5 @@ pytest-asyncio
 pyjwt[crypto]
 opentelemetry-sdk
 opentelemetry-exporter-otlp-proto-http
+langgraph-checkpoint-postgres
+psycopg-pool

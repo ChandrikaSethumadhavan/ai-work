@@ -80,4 +80,6 @@ async def run_review(graph, diff: str, context: str, thread_id: str, muted=(), c
         graph.budget.warned = graph.budget.warned or graph.budget.spent >= graph.budget.warn
         if snap.next:  # unfinished review: continue it
             return await graph.ainvoke(None, cfg)
+        if snap.values.get("review"):  # finished earlier (a later step failed): reuse it, never pay for it twice
+            return snap.values
     return await graph.ainvoke({"diff": diff, "context": context, "muted": list(muted), "context_ids": list(context_ids)}, cfg)
