@@ -1,0 +1,4 @@
+// Entry point for `node --test dashboard/tests`: Node 24 will not take a directory, so this file imports the specs.
+import './specs/queries.test.mjs';
+import './specs/auth.test.mjs';
+import './specs/live.test.mjs';
