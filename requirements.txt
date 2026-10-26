@@ -1,0 +1,11 @@
+fastapi
+arq
+httpx
+pytest
+psycopg[binary]
+langgraph
+anthropic
+pytest-asyncio
+pyjwt[crypto]
+opentelemetry-sdk
+opentelemetry-exporter-otlp-proto-http
