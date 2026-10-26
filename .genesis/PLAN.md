@@ -4,7 +4,7 @@
 
 - workflow: new-product
 - phase: verify
-- plan approval: ChandrikaSethumadhavan at 2026-10-26T10:33:58.572Z
+- plan approval: ChandrikaSethumadhavan at 2026-10-26T11:02:38.402Z
 
 ## Tasks
 
@@ -78,5 +78,13 @@
 - requirements: FR-4, FR-13, NFR-3
 - scope: app, tests, requirements.txt
 - gates: provider: python -m pytest tests/test_provider.py -q, regression: python -m pytest -q tests, independent-review: pass
+- next: Run the task pre-flight.
+
+### T-10 — Wire the worker end to end: fetch PR diff and changed files, incrementally index them, retrieve context, run the graph with Postgres checkpoints, save review and events, post or park for a human; CLI to list/approve/reject queued reviews
+
+- state/risk: done / medium
+- requirements: FR-3, FR-4, FR-7, FR-8, FR-13, NFR-5, NFR-9
+- scope: app, tests, requirements.txt
+- gates: wiring: python -m pytest tests/test_wiring.py -q, regression: python -m pytest -q tests, independent-review: pass
 - next: Run the task pre-flight.
 

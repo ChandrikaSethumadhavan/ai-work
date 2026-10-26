@@ -1,0 +1,30 @@
+{
+  "task": "T-10",
+  "gate": "regression",
+  "kind": "command",
+  "attempt": "e28fefbb-421a-445d-9eca-cd104ec16f92",
+  "command": "python -m pytest -q tests",
+  "started_at": "2026-10-26T11:14:26.657Z",
+  "observed_at": "2026-10-26T11:15:36.725Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "........................................................................ [ 98%]\n.                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_wiring.py::test_live_end_to_end_signed_webhook_through_redis_to_a_saved_review\n  /home/chan/ai-work/.venv/lib/python3.12/site-packages/arq/worker.py:877: DeprecationWarning: Call to deprecated close. (Use aclose() instead) -- Deprecated since version 5.0.1.\n    await self.pool.close(close_connection_pool=True)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n73 passed, 1 warning in 61.74s (0:01:01)\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "8f6d342b0721894d77c81fddc4e18ea2e68719da",
+    "dirty": true
+  },
+  "source_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+  "before_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+  "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "af58d572ade235e882ed27ad1b724c2a2065a3cf4a0c8e2b85a4a416e5d51730"
+}

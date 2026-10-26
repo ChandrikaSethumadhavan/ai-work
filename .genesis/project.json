@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-10-25T12:51:36.714Z",
-    "updated_at": "2026-10-26T10:49:22.206Z"
+    "updated_at": "2026-10-26T11:16:37.321Z"
   },
   "policy": {
     "ponytail": "full",
@@ -77,14 +77,14 @@
       ]
     },
     "plan_check": {
-      "at": "2026-10-26T10:21:59.206Z",
-      "source_hash": "9a7b63ada03ce052a277f1a4cc6936b3942c41cecee58608e68092bcbfe6e086"
+      "at": "2026-10-26T10:54:53.498Z",
+      "source_hash": "91193942cd186e7cc069efb4f35bd1a3511b15e7bf011a076108cfe547ee07f0"
     },
     "plan_approval": {
       "human": "ChandrikaSethumadhavan",
-      "reason": "Approve T-09: switch to free-tier model provider",
-      "at": "2026-10-26T10:33:58.572Z",
-      "source_hash": "9a7b63ada03ce052a277f1a4cc6936b3942c41cecee58608e68092bcbfe6e086"
+      "reason": "Approve T-10: wire worker end to end",
+      "at": "2026-10-26T11:02:38.402Z",
+      "source_hash": "91193942cd186e7cc069efb4f35bd1a3511b15e7bf011a076108cfe547ee07f0"
     }
   },
   "artifacts": [
@@ -361,6 +361,16 @@
       "status": "accepted",
       "source": "user request 2026-10-26",
       "recorded_at": "2026-10-26T10:34:31.165Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-5967b320",
+      "title": "Wiring choices (T-10)",
+      "text": "Index only files touched by the PR (incremental by content hash). Checkpoints in Tiger Cloud Postgres (langgraph-checkpoint-postgres), not Redis. Job queue on a hosted Redis (Redis Cloud free; Upstash free rejected: ARQ polling exceeds 500K commands/month). Escalated reviews handled by a small CLI to list/approve/reject, which posts on approve.",
+      "status": "accepted",
+      "source": "user answers 2026-10-26 (1.A 2.A 3.B 4.A)",
+      "recorded_at": "2026-10-26T10:54:51.662Z",
       "paths": [],
       "tags": []
     }
@@ -1355,6 +1365,143 @@
         "tests/test_reliability.py": "828aef5c1bc49e69d840eba56a23086dcfcb25292908aec3b4280e73493ce03d",
         "tests/test_retrieval.py": "bdd0a490f43ede66f38566e326901b76d3308af35f2cbcfc93e5ed3ab1e49ea9"
       }
+    },
+    {
+      "id": "T-10",
+      "outcome": "Wire the worker end to end: fetch PR diff and changed files, incrementally index them, retrieve context, run the graph with Postgres checkpoints, save review and events, post or park for a human; CLI to list/approve/reject queued reviews",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "app",
+        "tests",
+        "requirements.txt"
+      ],
+      "dependencies": [
+        "T-09"
+      ],
+      "requirements": [
+        "FR-3",
+        "FR-4",
+        "FR-7",
+        "FR-8",
+        "FR-13",
+        "NFR-5",
+        "NFR-9"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "wiring",
+          "kind": "command",
+          "command": "python -m pytest tests/test_wiring.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-10-wiring-b8c45f87-048a-40d7-bcc5-24b5b699d690.json",
+            "hash": "8ff8c40a54b8185913640dc7b3785dbdab4320137c029351d92874b218b77e72",
+            "source_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+            "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+            "observed_at": "2026-10-26T11:14:26.082Z"
+          }
+        },
+        {
+          "id": "regression",
+          "kind": "command",
+          "command": "python -m pytest -q tests",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-10-regression-e28fefbb-421a-445d-9eca-cd104ec16f92.json",
+            "hash": "af58d572ade235e882ed27ad1b724c2a2065a3cf4a0c8e2b85a4a416e5d51730",
+            "source_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+            "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+            "observed_at": "2026-10-26T11:15:36.725Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-10-independent-review-cd4e3d80-191a-4b73-aa1c-fa2d9b32f5d6.json",
+            "hash": "c7f79e78ae3b7175e07203e9f120cb30e5d1f964dd524dc676cf8e80da47b26a",
+            "source_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+            "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+            "observed_at": "2026-10-26T11:16:29.137Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-26T10:54:52.858Z",
+      "updated_at": "2026-10-26T11:16:36.009Z",
+      "base_manifest": {
+        ".claude/settings.json": "e1a6a1b1f15a1902b9f998398465693c2d20f6abc7755225ac313bbcbfe1729e",
+        ".gitignore": "e8f14e776c01ecaf1b1088efdaed32d6566af1bfb8b786a4d068396c514d736c",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "7b79f6c4a73cafc5ba26d94982cb8537bf4cb2984a9af7bf0f53e3ebf2f7a868",
+        "app.py": "2cf4aa4156c3d11b03dfa892c4a5a83b14df1331fe516473093b1f6295fbe505",
+        "app/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/aggregate/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/aggregate/gate.py": "979b170e6524a2548b4b642c592feb8d6b194223f9c6b2a7f1ed1b3c3d57deab",
+        "app/aggregate/store.py": "0c9df640e786e5c3f6dc8cf12dd8c36c770041f874aa04777e2acdcf06fdacb8",
+        "app/db.py": "f25609bf946fd158d0f457ec12f13035a991e0894133aef2eef089f8cebea488",
+        "app/github/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/github/post.py": "fe33c854438d21088adf7faf6089474a8934e2671148c1c5c45b74167d74f403",
+        "app/ingress/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/ingress/main.py": "bd870031b0a3f66d875f0b98b0190fbf400249aa029aa093c7e43d59539a15c2",
+        "app/ingress/worker.py": "0740626d1bb74cde27434cf4332ecd2271046624ce0c7a75c667ed21bf719c27",
+        "app/orchestrator/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/orchestrator/agents.py": "bf1a34976fecc37800eddcbd59ffebae20645b5d401cab25cd87cd22b8b5f4cb",
+        "app/orchestrator/graph.py": "5f356eda060e50c7a42bf898ffe5e2684902e013b08429ab0729f7eff070b586",
+        "app/orchestrator/llm.py": "8743b3b78c70055eead4af800fd49a12695a4490d7c19220cd0e4b483b0180af",
+        "app/orchestrator/state.py": "476e86683211fe4748adb34f1cb77b196f88784287ecb5e1a31e7e49bf6fbb59",
+        "app/reliability/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/reliability/audit.py": "c0e220ee7a31a07d596630136342e1f6f18302b21679345d817c481557864fa2",
+        "app/reliability/dead_letter.py": "44a8e2b68c8121bc8b58d69db62d61f2dbc89b328f38f1adc5f1740c084ea7dd",
+        "app/reliability/retry.py": "fda7d090b86d24b7779e5dc018c93b4468fea001137b8fcc82b88bd4df287593",
+        "app/reliability/telemetry.py": "b8d5d8330f26c5376a7a50b9de2cf95582f18e6aaf8e0d7ad2eaa875cbb03c61",
+        "app/retrieval/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "app/retrieval/embed.py": "c2123fefb28a7c3f584ac523d719e9d0ea1b67f2f9eb5cba6b20ec0ee59ad134",
+        "app/retrieval/search.py": "8907346c3c0cbc2e5487a2cb89937ffeff69999a6b90f72549d0f2a3e3a18f37",
+        "dashboard/.gitignore": "b042ff1e926de12842564c7807a93b5abf7e9f7b62e7c25f75d523048eeab5f8",
+        "dashboard/app/api/health/route.js": "68abd5b197677313317bebc0ad3e1a0f38a09e45502e6b317ed803df84f3661a",
+        "dashboard/app/globals.css": "f7720c352078c2d695d8ff83fc49e44ee1718f392ad3c8416c7d543880282a10",
+        "dashboard/app/layout.js": "5b90f8d63a8b3d261358cb80cb6fc807d7b789e496702fa02f08237e0773fac1",
+        "dashboard/app/page.js": "ec43bf494b05fb74cc66068672ab854570af862b9b778f88dc754591f9635520",
+        "dashboard/db/readonly_role.sql": "5478b2330c2ab10179e97a1882db5f81fd2b8270464541909b2e6f7c2f227441",
+        "dashboard/lib/auth.mjs": "02810d98fd7a917efc21044d449a9a313a1fb83406646d63c7a45aeeeabc73d4",
+        "dashboard/lib/db.mjs": "efd8cced8fa5c723af119635a73e4610d4e511d6dee178410dd40dfbd9b5cf5a",
+        "dashboard/lib/queries.mjs": "cbc9350a87f0f715b460624d6ef7791fb313de783aa15e132ca96728deb1c198",
+        "dashboard/package-lock.json": "049da86635c94129e99daa3cb95ed6f6f523661610fa64851bc5018975ff3a42",
+        "dashboard/package.json": "5afe9f8323dccecd93427aab78c712615f2297bdb157af20a183a16e0ae7a089",
+        "dashboard/proxy.js": "be39f81a120ccbb935419fac6dc0a683cbbe3e863fe52c9f5cfa2e2f051b5017",
+        "dashboard/railway.json": "362b28c19a0f3fb5ab109f02d772ada6ae7d6cbbdf27e6b513cea5c8a7fe52d7",
+        "dashboard/specs/auth.test.mjs": "e1ae002d04a671b5c7f113d593c74862957e82acc327978243603fc1861f6bf0",
+        "dashboard/specs/live.test.mjs": "519a9c6f5b431586fe0fbcb188311a533b6faf3d5a9c37b0dc30b0231f13f4e6",
+        "dashboard/specs/queries.test.mjs": "b9ee78054812ab6c9ffe5d4e34d848a1e4a3fd1602aaaa12a41b83fcdd7ff129",
+        "dashboard/tests": "01a5d5d801aeab802d0b6cb777fcce25f15a453ada69eac915016815cb25985f",
+        "db/schema.sql": "465521ea4e3f234e385a022840c69c1ef4226fd1f1f87d283d480a9b71b0420f",
+        "requirements.txt": "a55dc3bb9348a63e1e99a908d22b54be3799260fec8abbaf6771d449d066ec8f",
+        "tests/conftest.py": "d8b9e850973956c1d8ca87e16afc4a2ceb47e4290e19ede80f60fdbd3e7b909b",
+        "tests/test_db.py": "654050368b54435d143ac5704491c1d69ea8656108f37acbb9ce9a19c0ce0c46",
+        "tests/test_gate.py": "29297baaaa09860e540da121ede2b5d89ba11be46c2c4f4d619b6b1733373ba4",
+        "tests/test_ingress.py": "0dc44ab4bb063eddeb6462fdb188a0b32d141aa08c668522b99c891b6835cddc",
+        "tests/test_orchestrator.py": "4e3101643bc3cb165914b7bb41ad81b17fc791dc920ccc7a28cf72953d18b054",
+        "tests/test_posting.py": "8915d2ad6b418914f1753a7b0a8ac7d9d5ce2f8e22fc7aae9c61e7ee06890f0c",
+        "tests/test_provider.py": "e49fa693d0b4c9139f743d903689d398f76b9ef05f7dbfc1e41832ba7322125b",
+        "tests/test_reliability.py": "828aef5c1bc49e69d840eba56a23086dcfcb25292908aec3b4280e73493ce03d",
+        "tests/test_retrieval.py": "bdd0a490f43ede66f38566e326901b76d3308af35f2cbcfc93e5ed3ab1e49ea9"
+      }
     }
   ],
   "learning_proposals": [],
@@ -1484,6 +1631,15 @@
       "task": "T-09",
       "human": "ChandrikaSethumadhavan",
       "reason": "Reviewed provider switch; 60 tests pass;live chat and embeddings verified",
+      "revision": null
+    },
+    {
+      "id": "cd4e3d80-191a-4b73-aa1c-fa2d9b32f5d6",
+      "at": "2026-10-26T11:16:29.137Z",
+      "action": "approve",
+      "task": "T-10",
+      "human": "ChandrikaSethumadhavan",
+      "reason": "Reviewed wiring; 73 tests pass incl. live e2e on Redis and Tiger",
       "revision": null
     }
   ],
@@ -1871,6 +2027,102 @@
       "cost": null,
       "stop_reason": null,
       "ended_at": "2026-10-26T10:47:08.857Z"
+    },
+    {
+      "id": "9485c5e4-e24c-441a-b9b8-aafefb0b8d4f",
+      "task": "T-10",
+      "kind": "gate",
+      "command": "python -m pytest tests/test_wiring.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 44076,
+      "child_pid": 44109,
+      "started_at": "2026-10-26T11:10:13.675Z",
+      "status": "passed",
+      "before_hash": "33d051313a03e6ed221aab530c7eeb5c13731cb9a7afc8515ee6984476e1f841",
+      "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+      "environment": {
+        "node": "v24.20.0",
+        "platform": "linux",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-26T11:10:59.823Z"
+    },
+    {
+      "id": "9c093e14-4671-4c23-9425-545a835d7c1f",
+      "task": "T-10",
+      "kind": "gate",
+      "command": "python -m pytest -q tests",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 44076,
+      "child_pid": 44214,
+      "started_at": "2026-10-26T11:11:00.360Z",
+      "status": "failed",
+      "before_hash": "33d051313a03e6ed221aab530c7eeb5c13731cb9a7afc8515ee6984476e1f841",
+      "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+      "environment": {
+        "node": "v24.20.0",
+        "platform": "linux",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": "command-failed",
+      "ended_at": "2026-10-26T11:12:07.879Z"
+    },
+    {
+      "id": "b8c45f87-048a-40d7-bcc5-24b5b699d690",
+      "task": "T-10",
+      "kind": "gate",
+      "command": "python -m pytest tests/test_wiring.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 44723,
+      "child_pid": 44776,
+      "started_at": "2026-10-26T11:13:39.113Z",
+      "status": "passed",
+      "before_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+      "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+      "environment": {
+        "node": "v24.20.0",
+        "platform": "linux",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-26T11:14:26.082Z"
+    },
+    {
+      "id": "e28fefbb-421a-445d-9eca-cd104ec16f92",
+      "task": "T-10",
+      "kind": "gate",
+      "command": "python -m pytest -q tests",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 44723,
+      "child_pid": 44916,
+      "started_at": "2026-10-26T11:14:26.657Z",
+      "status": "passed",
+      "before_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45",
+      "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+      "environment": {
+        "node": "v24.20.0",
+        "platform": "linux",
+        "arch": "x64",
+        "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-10-26T11:15:36.725Z"
     }
   ],
   "authorizations": [],
@@ -1878,11 +2130,11 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-10-26T10:49:22.150Z",
+    "at": "2026-10-26T11:16:37.271Z",
     "revision": {
-      "commit": "4b8934e9c4d3b6ae62048eda0217049ec71c7e19",
+      "commit": "8f6d342b0721894d77c81fddc4e18ea2e68719da",
       "dirty": true,
-      "source_hash": "9697b291e1a604f8dd670b96ad7e36320d020121412952e0a0c32ac464213880"
+      "source_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45"
     },
     "active_task": null,
     "next_action": "Review completed work and choose the next bounded outcome."

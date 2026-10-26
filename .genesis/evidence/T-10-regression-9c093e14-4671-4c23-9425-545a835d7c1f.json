@@ -1,0 +1,30 @@
+{
+  "task": "T-10",
+  "gate": "regression",
+  "kind": "command",
+  "attempt": "9c093e14-4671-4c23-9425-545a835d7c1f",
+  "command": "python -m pytest -q tests",
+  "started_at": "2026-10-26T11:11:00.360Z",
+  "observed_at": "2026-10-26T11:12:07.879Z",
+  "exit_code": 1,
+  "signal": null,
+  "stdout": "............................F........................................... [ 98%]\n.                                                                        [100%]\n=================================== FAILURES ===================================\n__________________ test_budget_survives_crash_and_new_worker ___________________\n\n    @pytest.mark.asyncio\n    async def test_budget_survives_crash_and_new_worker():  # NFR-3 across resume\n        saver = MemorySaver()\n        llm = FakeLLM(crash={\"tests\"}, tokens=(1_000_000, 0))  # security $4 + quality $2 + docs $2, then tests crashes\n        with pytest.raises(Crash):\n            await run_review(build_graph(llm, saver), \"diff\", \"ctx\", \"t8\")\n        llm2, fresh = FakeLLM(), Budget()  # a brand-new worker process: budget starts empty\n        out = await run_review(build_graph(llm2, saver, budget=fresh), \"diff\", \"ctx\", \"t8\")\n>       assert fresh.spent >= 8.0  # reseeded from the saved state\n        ^^^^^^^^^^^^^^^^^^^^^^^^^\nE       assert 6.0 >= 8.0\nE        +  where 6.0 = <app.orchestrator.graph.Budget object at 0x7effb522f7d0>.spent\n\ntests/test_orchestrator.py:124: AssertionError\n=============================== warnings summary ===============================\ntests/test_wiring.py::test_live_end_to_end_signed_webhook_through_redis_to_a_saved_review\n  /home/chan/ai-work/.venv/lib/python3.12/site-packages/arq/worker.py:877: DeprecationWarning: Call to deprecated close. (Use aclose() instead) -- Deprecated since version 5.0.1.\n    await self.pool.close(close_connection_pool=True)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/test_orchestrator.py::test_budget_survives_crash_and_new_worker\n1 failed, 72 passed, 1 warning in 60.05s (0:01:00)\n",
+  "stderr": "",
+  "failure": "command-failed",
+  "receipt": null,
+  "revision": {
+    "commit": "8f6d342b0721894d77c81fddc4e18ea2e68719da",
+    "dirty": true
+  },
+  "source_hash": "33d051313a03e6ed221aab530c7eeb5c13731cb9a7afc8515ee6984476e1f841",
+  "before_hash": "33d051313a03e6ed221aab530c7eeb5c13731cb9a7afc8515ee6984476e1f841",
+  "config_hash": "bce7eeadb90283b32a113c8c280b710749f15cff42e4692ed4b7b1dd426b6973",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "arch": "x64",
+    "verifier": "cbdddbf25e5ed5f3406b93881ae54f64d11a8c54f0bfe177d19d9d9946a6a971",
+    "variables": {}
+  },
+  "hash": "85481474e0c5b4ce3349cfc2b5e8149558a5c936f37c41f4c20624a42dded1bc"
+}
