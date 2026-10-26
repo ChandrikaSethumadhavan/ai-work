@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-10-25T12:51:36.714Z",
-    "updated_at": "2026-10-26T11:16:37.321Z"
+    "updated_at": "2026-10-26T13:21:41.482Z"
   },
   "policy": {
     "ponytail": "full",
@@ -23,11 +23,11 @@
     }
   },
   "lifecycle": {
-    "phase": "verify",
+    "phase": "build",
     "status": "ready",
     "active_task": null,
     "blocker": null,
-    "next_action": "Review completed work and choose the next bounded outcome."
+    "next_action": "Add the next approved implementation task."
   },
   "commands": {},
   "workflow": {
@@ -77,14 +77,14 @@
       ]
     },
     "plan_check": {
-      "at": "2026-10-26T10:54:53.498Z",
-      "source_hash": "91193942cd186e7cc069efb4f35bd1a3511b15e7bf011a076108cfe547ee07f0"
+      "at": "2026-10-26T11:25:39.471Z",
+      "source_hash": "424702d6d18770eb70da605d4f0d34a108b5f028a0424a42f93252819f1c7e81"
     },
     "plan_approval": {
       "human": "ChandrikaSethumadhavan",
-      "reason": "Approve T-10: wire worker end to end",
-      "at": "2026-10-26T11:02:38.402Z",
-      "source_hash": "91193942cd186e7cc069efb4f35bd1a3511b15e7bf011a076108cfe547ee07f0"
+      "reason": "Plan approved without T-11 (skipped by owner)",
+      "at": "2026-10-26T12:46:11.326Z",
+      "source_hash": "424702d6d18770eb70da605d4f0d34a108b5f028a0424a42f93252819f1c7e81"
     }
   },
   "artifacts": [
@@ -373,9 +373,29 @@
       "recorded_at": "2026-10-26T10:54:51.662Z",
       "paths": [],
       "tags": []
+    },
+    {
+      "id": "DECISION-a54fe812",
+      "title": "T-11 skipped by owner",
+      "text": "Owner chose to skip T-11 (JSON escape tolerance, severity caps, status fix) to finish the project. Known defects remain: security/quality agents can fail on invalid JSON escapes in model output, tests agent can rate CRITICAL and force escalation, save_review marks status 'posted' before posting. Evidence: dry run on PR #1.",
+      "status": "accepted",
+      "source": "user: skip T-11, finish the project, 2026-10-26",
+      "recorded_at": "2026-10-26T11:25:38.023Z",
+      "paths": [],
+      "tags": []
     }
   ],
-  "knowledge": [],
+  "knowledge": [
+    {
+      "id": "KNOWLEDGE-ce4e26b7",
+      "title": "Dry run on real PR #1 (2026-10-26)",
+      "text": "Real GitHub reads/indexing/Gemini calls work. Two defects: security and quality agents failed with JSONDecodeError (Invalid \\escape) from backslashes in model JSON; tests agent returned CRITICAL for missing tests at confidence 1.0, which forces escalation. Also save_review marks status 'posted' before posting.",
+      "source": "dry run output",
+      "tags": [],
+      "recorded_at": "2026-10-26T11:24:21.966Z",
+      "paths": []
+    }
+  ],
   "tasks": [
     {
       "id": "SPEC-1",
@@ -1502,6 +1522,62 @@
         "tests/test_reliability.py": "828aef5c1bc49e69d840eba56a23086dcfcb25292908aec3b4280e73493ce03d",
         "tests/test_retrieval.py": "bdd0a490f43ede66f38566e326901b76d3308af35f2cbcfc93e5ed3ab1e49ea9"
       }
+    },
+    {
+      "id": "T-11",
+      "outcome": "Harden review quality: tolerate invalid JSON escapes in model output, add a severity rubric to prompts and cap tests/docs severity, and stop marking a review 'posted' before it is posted",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "app",
+        "tests",
+        "requirements.txt"
+      ],
+      "dependencies": [
+        "T-10"
+      ],
+      "requirements": [
+        "FR-5",
+        "FR-6",
+        "FR-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "hardening",
+          "kind": "command",
+          "command": "python -m pytest tests/test_hardening.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "regression",
+          "kind": "command",
+          "command": "python -m pytest -q tests",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-10-26T11:24:23.254Z",
+      "updated_at": "2026-10-26T11:24:23.255Z"
     }
   ],
   "learning_proposals": [],
@@ -1640,6 +1716,15 @@
       "task": "T-10",
       "human": "ChandrikaSethumadhavan",
       "reason": "Reviewed wiring; 73 tests pass incl. live e2e on Redis and Tiger",
+      "revision": null
+    },
+    {
+      "id": "923bce20-7dcb-4628-ae2d-518250662e61",
+      "at": "2026-10-26T11:25:38.766Z",
+      "action": "reject",
+      "task": "T-11",
+      "human": null,
+      "reason": null,
       "revision": null
     }
   ],
@@ -2130,14 +2215,14 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-10-26T11:16:37.271Z",
+    "at": "2026-10-26T13:21:41.413Z",
     "revision": {
-      "commit": "8f6d342b0721894d77c81fddc4e18ea2e68719da",
+      "commit": "7a8577a740143255e2221c620c2542b40968b864",
       "dirty": true,
       "source_hash": "78e0ac8f762fc5e151b4cf00d16c0e53ba091fbc592a6a2318ecbc914875fa45"
     },
     "active_task": null,
-    "next_action": "Review completed work and choose the next bounded outcome."
+    "next_action": "Add the next approved implementation task."
   },
   "legacy": null
 }
